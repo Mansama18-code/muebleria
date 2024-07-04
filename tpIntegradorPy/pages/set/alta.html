@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   
+
+    <!--favicon-->
+    <link rel="icon" href="../../img/LogoRos.png" />
+    <!--iconos redes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+
+    <!--fuente-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vollkorn+SC:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!--icono de hamburg -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!--CSS-->
+    <link rel="stylesheet" href="../../css/estyle.css" />
+    
+    <title>HomeExitoMuebles</title>
+    </head>
+    <body>
+        <header class="header">
+          <div class="header_logo">
+            <img src="../../img/LogoRos.jpg" alt="logo" />
+          </div>
+    
+          <!--boton de abrir menu desplegable-->
+          <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+          <nav class="nav" id="nav">
+            <!--lista desplegable de 4 secciones-->
+    
+            <!--botn de cerrar menu desplegable-->
+    
+            <button class="cerrar-menu" id="cerrar">
+              <i class="bi bi-x-square"></i>
+            </button>
+            <ul class="nav-list">
+                <li><a href="../../index.html" target="_blank"> Home </a></li>
+                <li><a href="../muebles.html"> Muebles</a></li>
+                <li><a href="../nosotros.html"> Nosotros</a></li>
+                <li><a href="../contacto.html"> Contacto</a></li>
+                <li><a href="../login.html"> login</a></li>
+            </ul>
+          </nav>
+        </header>
+    
+        <main>
+
+            <h1>Agregar Productos al Inventario</h1><br>
+            <!--enctype="multipart/form-data" es necesario para enviar archivos
+            al back.-->
+            <form id="formulario" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="rounder-info" name="nombre" required><br>
+            
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" class="rounder-info" name="descripcion" required><br>
+           
+            <label for="material">Material:</label>
+            <input type="text" id="material" class="rounder-info" name="material" required><br>
+           
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" class="rounder-info" name="cantidad" required><br>
+            
+            
+            <label for="preciomn">Precio Menor:</label>
+            <input type="number" step="0.01"  class="rounder-info" id="preciomn" name="preciomn" required><br>
+           
+            <label for="preciomy">Precio Mayor:</label>
+            <input type="number" step="0.01"  class="rounder-info" id="preciomy" name="preciomy" required><br>
+           
+            <button type="submit">Agregar Producto</button>
+             <a href="./lista.html">Menu principal</a>
+            </form>
+
+            
+        </main>
+
+   
+        <footer class="footer">
+          <!--logo-->
+          <div class="footer_logo">
+            <img src="../../img/LogoCat.jpg" alt="logo" />
+          </div>
+    
+          <div class="footer_data">
+            <div><i class="fa fa-map-marker"></i> Rawson 42 | C.A.B.A.</div>
+            <div><i class="fa fa-phone"></i> (011) 0800-000-0000</div>
+            <div><i class="fa fa-envelope"></i> info@exitomuebles.com.ar</div>
+            <div><i class="fa fa-clock-o"></i> Lun. a Vier. de 9 a 18 hs</div>
+          </div>
+    
+          <div class="footer_iconos">
+            <a href="https://www.instagram.com" target="_blank">
+              <i class="boton-red-social fab fa-instagram"></i>
+            </a>
+    
+            <a href="https://www.youtube.com" target="_blank">
+              <i class="boton-red-social fab fa-youtube"></i>
+            </a>
+          </div>
+        </footer>
+        <script src="../../js/main.js"></script>
+        <script src="../../js/alta.js"></script>
+      </body>
+    </html>
