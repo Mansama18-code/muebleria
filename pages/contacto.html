@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!--favicon-->
+    <link rel="icon" href="../img/LogoRos.png" />
+    <!--iconos redes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+
+     <!--fuente-->
+     <link
+     href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+     rel="stylesheet"
+   />
+   <link
+     href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vollkorn+SC:wght@900&display=swap"
+     rel="stylesheet"
+   />
+   <link
+     href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+     rel="stylesheet"
+   />
+    <!--icono de hamburg -->
+   <link
+   rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+ />
+
+ <!--CSS-->
+ <link rel="stylesheet" href="../css/estyle.css" />
+
+    <title>Contacto</title>
+  </head>
+  <body>
+
+      <header class="header">
+      <div class="header_logo">
+        <img src="../img/LogoRos.jpg" alt="logo" />
+      </div>
+
+    <!--boton de abrir menu desplegable-->
+    <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+    <nav class="nav" id="nav">
+      <!--lista desplegable de 4 secciones-->
+
+      <!--botn de cerrar menu desplegable-->
+
+      <button class="cerrar-menu" id="cerrar">
+        <i class="bi bi-x-square"></i>
+      </button>
+      <ul class="nav-list">
+        <li><a href="./index.html" target="_blank"> Home </a></li>
+        <li><a href="./pages/muebles.html"> Muebles</a></li>
+        <li><a href="./pages/nosotros.html"> Nosotros</a></li>
+        <li><a href="./pages/contacto.html"> Contacto</a></li>
+        <li><a href="./pages/login.html"> login</a></li>
+      </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="main_ofrecemos">
+        <p>
+          Ofrecemos una atención personalizada a la hora de planificar los
+          espacios interiores.
+          <br />
+          Esto puede incluir productos de nuestro Catálogo, o podemos diseñar y
+          fabricar piezas completamente a medida.
+        </p>
+      </div>
+
+     
+<h1>Formulario de contacto</h1>
+      <div class="container">
+        
+        
+        <form id="FormularioContacto" onsubmit="return validarFormulario()">
+           
+          <div class="datos">
+                <label for="nombre" class="form-label">Nombre completo:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <span class="error" id="errorNombre"></span>
+            </div>
+
+            <div class="datos">
+                <label for="email" class="form-label">Correo electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <span class="error" id="errorEmail"></span>
+            </div>
+
+            <div class="datos">
+                <label for="asunto" class="form-label">Asunto:</label>
+                <select class="form-select" id="asunto" name="asunto" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="sugerencia">Sugerencia</option>
+                    <option value="reclamo">Reclamo</option>
+                </select>
+                <span class="error" id="errorAsunto"></span>
+            </div>
+
+            <div class="datos">
+                <label for="mensaje" class="form-label">Mensaje:</label>
+                <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required></textarea>
+                <span class="error" id="errorMensaje"></span>
+            </div>
+
+            <div class="datos">
+                <label for="medioContacto" class="form-label">Medio de contacto preferido:</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="medioContacto" name="medioContacto" value="medioContacto" required>
+                    <label class="form-check-label" for="medioContacto">Instagram</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="correoElectronico" name="medioContacto" value="correoElectronico" required>
+                    <label class="form-check-label" for="correoElectronico">Correo electrónico</label>
+                </div>
+                <span class="error" id="errorMedioContacto"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar formulario</button>
+
+        </form>
+        <div class="mapa">
+          <p>Horarios de atención: de 9 a 18 hs.
+          <br />
+              Rawson 42 | (C1182ABB) | CABA
+          <br />
+         </p>
+          
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.669142462972!2d-58.42819592425937!3d-34.61252697295115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca5dac9e0bbb%3A0x2ab5770a320fb2b2!2sRawson%2042%2C%20C1182ABB%20CABA!5e0!3m2!1ses-419!2sar!4v1702290011532!5m2!1ses-419!2sar"
+            width="400"
+          height="300"
+          style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        
+
+      </div>
+
+      
+
+    </main>
+
+    
+    <footer class="footer">
+      <!--logo-->
+      <div class="footer_logo">
+        <img src="../img/LogoCat.jpg" alt="logo" />
+      </div>
+
+      <div class="footer_data">
+        <div><i class="fa fa-map-marker"></i> Rawson 42 | C.A.B.A.</div>
+        <div><i class="fa fa-phone"></i> (011) 0800-000-0000</div>
+        <div><i class="fa fa-envelope"></i> info@exitomuebles.com.ar</div>
+        <div><i class="fa fa-clock-o"></i> Lun. a Vier. de 9 a 18 hs</div>
+      </div>
+
+      <div class="footer_iconos">
+        <a href="https://www.instagram.com" target="_blank">
+          <i class="boton-red-social fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.youtube.com" target="_blank">
+          <i class="boton-red-social fab fa-youtube"></i>
+        </a>
+      </div>
+    </footer>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
