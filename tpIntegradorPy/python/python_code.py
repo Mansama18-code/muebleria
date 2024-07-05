@@ -91,9 +91,9 @@ class Mueble:
         else:
             print("Producto no encontrado.")
         
-    def modificar_producto(self, nuevo_nombre, nueva_descripcion, nuevo_material, nueva_cantidad, nuevo_preciomin, nuevo_preciomay, cod_articulo):
+    def modificar_producto(self, nuevo_nombre, nueva_descripcion, nuevo_material, nueva_cantidad, nuevo_preciomin, nuevo_preciomay, codigo):
         sql = "UPDATE mueble SET nombre=%s,  descripcion = %s, material = %s, cantidad = %s, preciomin = %s, preciomay = %s  WHERE cod_articulo = %s"
-        valores = ( nuevo_nombre, nueva_descripcion, nuevo_material, nueva_cantidad, nuevo_preciomin, nuevo_preciomay, cod_articulo)
+        valores = ( nuevo_nombre, nueva_descripcion, nuevo_material, nueva_cantidad, nuevo_preciomin, nuevo_preciomay, codigo)
         self.cursor.execute(sql, valores)
         self.conn.commit()
         return self.cursor.rowcount > 0
@@ -117,8 +117,7 @@ class Mueble:
 
 mueble1= Mueble(host='localhost', user='root', password='', database='muebles')
 
-# Agregamos productos a la tabla mueble
-#mueble1.agregar_mueble('Mesa', 'ovalada', 'Granito' , 30 , 33500 , 30000)  
+
 
 ''''
 x
@@ -156,17 +155,20 @@ def listar_productos():
         
         return jsonify(muebles)
 
+@app.route("/mueble/<int:codigo>", methods=["GET"])
+def mostrar_producto(codigo):
+    muebles = mueble1.consultar_mueble(codigo)
+    if muebles:
+        return jsonify(muebles), 201
+    else:
+        return "Producto no encontrado", 404
+
 
 #--------------------------------------------------------------------
 # Agregar un producto
 #--------------------------------------------------------------------
 @app.route("/mueble", methods=["POST"])
-#La ruta Flask `/productos` con el método HTTP POST está diseñada para 
-# permitir la adición de un nuevo producto a la base de datos.
-#La función agregar_producto se asocia con esta URL y es llamada cuando
-#se hace una solicitud POST a /productos.
 def agregar_producto():
-#Recojo los datos del form
     nombre = request.form['nombre']
     descripcion = request.form['descripcion']
     material = request.form['material']
@@ -177,11 +179,10 @@ def agregar_producto():
     nuevo_codigo = mueble1.agregar_mueble(nombre, descripcion, material, cantidad, preciomn, preciomy)
     if nuevo_codigo:
 
-    #Si el producto se agrega con éxito, se devuelve una respuesta
-    #JSON con un mensaje de éxito y un código de estado HTTP 201 (Creado).
+    
         return jsonify({"mensaje": "Producto agregado correctamente.", "codigo": nuevo_codigo}), 201
     else:
-        #Si el producto no se puede agregar, se devuelve una respuesta JSON con un mensaje de error y un código de estado HTTP 500 (Internal Server Error).
+        
         return jsonify({"mensaje": "Error al agregar el producto."}), 500
 
 #--------------------------------------------------------------------
@@ -189,63 +190,47 @@ def agregar_producto():
 #--------------------------------------------------------------------
 # Modificar un producto según su código
 #--------------------------------------------------------------------
+
 @app.route("/mueble/<int:codigo>", methods=["PUT"])
-#La ruta Flask /productos/<int:codigo> con el método HTTP PUT está
-#diseñada para actualizar la información de un producto existente en la
-#base de datos, identificado por su código.
-#La función modificar_producto se asocia con esta URL y es invocada
-#cuando se realiza una solicitud PUT a /productos/ seguido de un número
-#(el código del producto).
 def modificar_producto(codigo):
-#Se recuperan los nuevos datos del formulario
+
         nueva_nombre = request.form.get("nombre")     
         nueva_descripcion = request.form.get("descripcion")
         nueva_material = request.form.get("material")
         nueva_cantidad = request.form.get("cantidad")
-        nuevo_preciomin = request.form.get("precio")
-        nuevo_preciomay = request.form.get("proveedor")
+        nuevo_preciomin = request.form.get("preciomn")
+        nuevo_preciomay = request.form.get("preciomy")
 
+        
 
-        # Se llama al método modificar_producto pasando el codigo del
-        #producto y los nuevos datos.
+       
         if mueble1.modificar_producto(nueva_nombre, nueva_descripcion, nueva_material, nueva_cantidad, nuevo_preciomin,nuevo_preciomay, codigo ):
-        #Si la actualización es exitosa, se devuelve una respuesta JSON
-        #con un mensaje de éxito y un código de estado HTTP 200 (OK).
+        
             return jsonify({"mensaje": "Producto modificado"}), 200
         else:
-            #Si el producto no se encuentra (por ejemplo, si no hay ningún
-            #producto con el código dado), se devuelve un mensaje de error con un
-            #código de estado HTTP 404 (No Encontrado).
+            
             return jsonify({"mensaje": "Producto no encontrado"}), 403
 #--------------------------------------------------------------------
 # Eliminar un producto según su código
 #--------------------------------------------------------------------
+
+
+@app.route("/mueble/<int:codigo>", methods=["DELETE"])
 def eliminar_producto(codigo):
-# Busco el producto en la base de datos
+
     producto = mueble1.consultar_mueble(codigo)
-    if producto: # Si el producto existe, verifica si hay una imagen asociada en el servidor.
-            # Armo la ruta a la imagen
-            #ruta_imagen = os.path.join(ruta_destino, producto["imagen_url"])
-            # Y si existe, la elimina del sistema de archivos.
-            #if os.path.exists(ruta_imagen):
-                #os.remove(ruta_imagen)
-            # Luego, elimina el producto del catálogo
+    if producto: 
+          
             if mueble1.eliminar_mueble(codigo):
-    #Si el producto se elimina correctamente, se devuelve una
-    #respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
+   
 
                 return jsonify({"mensaje": "Producto eliminado"}), 200
             else:
-            #Si ocurre un error durante la eliminación (por ejemplo, si
-            #el producto no se puede eliminar de la base de datos por alguna razón),
-            #se devuelve un mensaje de error con un código de estado HTTP 500 (Error
-            #Interno del Servidor).
+            
 
                 return jsonify({"mensaje": "Error al eliminar el producto"}), 500
     else:
-        #Si el producto no se encuentra (por ejemplo, si no existe un
-        #producto con el codigo proporcionado), se devuelve un mensaje de error
-        #con un código de estado HTTP 404 (No Encontrado).
+        
         return jsonify({"mensaje": "Producto no encontrado"}), 404
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
-const URL = "http://127.0.0.1:5000/"
+//const URL = "http://127.0.0.1:5000/"
+const URL = "https://mansama18.pythonanywhere.com/"
 // Obtiene el contenido del inventario
 function obtenerProductos() {
 fetch(URL + 'mueble') // Realiza una solicitud GET al servidor y obtener la lista de productos.
@@ -40,7 +41,7 @@ function eliminarProducto(codigo) {
 
 if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
 
-fetch(URL + 'mueble/' + {codigo} , { method: 'DELETE' })
+fetch(URL + 'mueble/' + codigo , { method: 'DELETE' })
 .then(response => {
 if (response.ok) {
     console.log(response);

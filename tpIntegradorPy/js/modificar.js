@@ -1,7 +1,7 @@
-const URL = "http://127.0.0.1:5000/"
+//const URL = "http://127.0.0.1:5000/"
 // Al subir al servidor, deberá utilizarse la siguiente ruta.
 //USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-//const URL = "https://USUARIO.pythonanywhere.com/"
+const URL = "https://mansama18.pythonanywhere.com/"
 // Variables de estado para controlar la visibilidad y los datos del formulario
 
 let codigo = '';
@@ -25,18 +25,20 @@ document.getElementById('form-guardar-cambios').addEventListener('submit', guard
 // Se ejecuta cuando se envía el formulario de consulta. Realiza
 //una solicitud GET a la API y obtiene los datos del producto
 //correspondiente al código ingresado.
-
 function obtenerProducto(event) {
     event.preventDefault();
     codigo = document.getElementById('codigo').value;
-    fetch(URL + 'mueble/' + codigo)
+    console.log(codigo);
+    fetch(URL+'mueble/'+codigo, { method: 'GET' })
     .then(response => {
     if (response.ok) {
-    return response.json()
+        console.log(response);
+        return response.json();
     } else {
-    throw new Error('Error al obtener los datos del producto.')
+        throw new Error('Error al obtener los datos del producto.');
 }
 }).then(data => {
+    console.log(data);
     nombre = data.nombre;
     descripcion = data.descripcion;
     material = data.material;
@@ -47,7 +49,7 @@ function obtenerProducto(event) {
     mostrarDatosProducto = true; //Activa la vista del segundo formulario
     mostrarFormulario();
 }).catch(error => {
-    alert('Código no encontrado.');
+    alert('Código no encontrado.', error);
 });
 }
 // Muestra el formulario con los datos del producto
@@ -85,6 +87,7 @@ document.getElementById('preciomyModificar').value = preciomy;
     } else { document.getElementById('datos-producto').style.display = 'none';
 }
 }
+
 // Se activa cuando el usuario selecciona una imagen para cargar.
 /*function seleccionarImagen(event) {
 const file = event.target.files[0];

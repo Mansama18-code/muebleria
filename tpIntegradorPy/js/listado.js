@@ -1,7 +1,7 @@
-const URL = "http://127.0.0.1:5000/";
+//const URL = "http://127.0.0.1:5000/";
 // Al subir al servidor, deberá utilizarse la siguiente ruta.
 //USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-//const URL = "https://USUARIO.pythonanywhere.com/"
+const URL = "https://mansama18.pythonanywhere.com/"
 
 // Realizamos la solicitud GET al servidor para obtener todos los productos.
 console.log(URL);
