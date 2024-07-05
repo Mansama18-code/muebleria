@@ -115,7 +115,7 @@ class Mueble:
 #       Programa              principal      #
 # ############################################
 
-mueble1= Mueble(host='localhost', user='root', password='', database='muebles')
+mueble1= Mueble(host='mansama18.mysql.pythonanywhere-services.com', user='mansama18', password='Pruebas12345!', database='mansama18$muebles')
 
 
 
